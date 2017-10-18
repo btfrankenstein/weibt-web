@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import HelloWorld from '@/components/HelloWorld';
 import Login from '@/views/login';
-import Feed from '@/views/feed';
+import Feed from '@/views/feed/index';
 
 Vue.use(Router);
 
