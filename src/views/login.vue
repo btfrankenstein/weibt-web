@@ -2,7 +2,6 @@
   <div>
     
     <el-row type="flex" justify="center" align="middle">
-      
       <el-col :span="6">
         <h1 style="text-align:center;">WeiBt</h1>
         <el-form ref="form" :model="form" label-width="80px">
@@ -23,6 +22,8 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie';
+
 import { wsLogin } from '../api/login';
 
 export default {
@@ -40,7 +41,12 @@ export default {
         email: this.form.user,
         password: this.form.password,
       }).then((data) => {
-        console.log(data);
+        if (data.status === 200) {
+          Cookies.set('weibt_token', data.userId);
+          this.$router.push('/feed');
+        } else {
+          alert(data);
+        }
       });
     },
   },
