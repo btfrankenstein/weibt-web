@@ -8,19 +8,28 @@
       v-model="textarea">
     </el-input>
     <div class="m-t-10">
-      <el-button type="primary" icon="search">发布</el-button>
+      <el-button @click="postFeed" type="primary" icon="search">发布</el-button>
     </div>
   </div>
 </template>
 
 <script>
-
+import { wsPostFeed } from '@/api/feed';
 
 export default {
   data() {
     return {
       textarea: '',
     };
+  },
+  methods: {
+    postFeed() {
+      wsPostFeed({
+        content: this.textarea,
+      }).then((data) => {
+        console.log(data);
+      });
+    },
   },
 };
 </script>
