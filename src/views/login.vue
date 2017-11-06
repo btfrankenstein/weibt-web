@@ -6,7 +6,7 @@
         <h1 style="text-align:center;">WeiBt</h1>
         <el-form ref="form" :model="form" label-width="80px">
           <el-form-item label="用户名">
-            <el-input v-model="form.user"></el-input>
+            <el-input v-model="form.username"></el-input>
           </el-form-item>
           <el-form-item label="密码">
             <el-input v-model="form.password"></el-input>
@@ -22,31 +22,25 @@
 </template>
 
 <script>
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
-import { wsLogin } from '../api/login';
+// import { wsLogin } from '../api/login';
 
 export default {
   data() {
     return {
       form: {
-        user: '',
+        username: '',
         password: '',
       },
     };
   },
   methods: {
     onSubmit() {
-      wsLogin({
-        email: this.form.user,
-        password: this.form.password,
-      }).then((data) => {
-        if (data.status === 200) {
-          Cookies.set('weibt_token', data.userId);
-          this.$router.push('/feed');
-        } else {
-          alert(data);
-        }
+      this.$store.dispatch('storeLogin', this.form).then(() => {
+        this.$router.push({ path: '/feed' });
+      }).catch((e) => {
+        alert(e);
       });
     },
   },
