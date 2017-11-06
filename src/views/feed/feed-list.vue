@@ -36,7 +36,7 @@ export default {
   mounted() {
     console.log(this.$store.getters.token);
     wsGetFeed({}).then((data) => {
-      this.feedList = data.data;
+      this.feedList = data.data.feed;
     });
   },
 };
