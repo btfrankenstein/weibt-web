@@ -25,6 +25,7 @@ export default {
   name: 'hello',
   data() {
     return {
+      prefixCls: 'card',
       msg: 'Welcome to Your Vue.js App',
     };
   },
