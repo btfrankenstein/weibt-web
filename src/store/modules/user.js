@@ -1,4 +1,5 @@
 import { wsLogin } from '@/api/login';
+import { wsGetFeed } from '@/api/feed';
 import { getToken, setToken } from '@/utils/token';
 
 const user = {
@@ -30,6 +31,15 @@ const user = {
           }
         }).catch((error) => {
           reject(error);
+        });
+      });
+    },
+    getUserInfo() {
+      return new Promise((resolve, reject) => {
+        wsGetFeed({}).then((res) => {
+          resolve(res);
+        }).catch((e) => {
+          reject(e);
         });
       });
     },
