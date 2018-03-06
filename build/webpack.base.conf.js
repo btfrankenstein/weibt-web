@@ -1,5 +1,5 @@
 const path = require('path')
-const utils = require('./utils')
+// const utils = require('./utils')
 const webpack = require('webpack')
 const vueConfig = require('./vue-loader.conf')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -62,7 +62,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('media/[name].[hash:7].[ext]')
+          name: 'static/media/[name].[hash:7].[ext]'
         }
       },
       {
@@ -70,7 +70,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+          name: 'static/fonts/[name].[hash:7].[ext]'
         }
       }
     ]

@@ -8,16 +8,13 @@ Vue.use(Router);
 
 export function createRouter() {
   return new Router({
+    mode: 'history',
+    fallback: false,
     routes: [
       {
         path: '/',
         name: 'Hello',
         component: () => import('@/components/HelloWorld.vue'),
-      },
-      {
-        path: '/hello',
-        name: 'Hello11',
-        component: () => import('@/components/Hello.vue'),
       },
       {
         path: '/login',

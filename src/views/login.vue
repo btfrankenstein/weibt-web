@@ -40,6 +40,7 @@ export default {
       return store.dispatch('storeLogin', { id })
     },
     onSubmit() {
+      console.log(this.$store);
       this.$store.dispatch('storeLogin', this.form).then(() => {
         this.$router.push({ path: '/feed' });
       }).catch((e) => {

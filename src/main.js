@@ -24,23 +24,24 @@ export function createApp() {
 
   const app = new Vue({
     router,
+    store,
     render: h => h(App),
   });
 
-  // router.beforeEach((to, from, next) => {
-  //   if (getToken()) {
-  //     store.dispatch('getUserInfo').then(() => {
-  //       next();
-  //     }).catch((e) => {
-  //       ElementUI.Message.error(e);
-  //       next({ path: '/login' });
-  //     });
-  //   } else if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
-  //     next();
-  //   } else {
-  //     next({ path: '/login' });
-  //   }
-  // });
+  router.beforeEach((to, from, next) => {
+    if (getToken()) {
+      store.dispatch('getUserInfo').then(() => {
+        next();
+      }).catch((e) => {
+        ElementUI.Message.error(e);
+        next({ path: '/login' });
+      });
+    } else if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
+      next();
+    } else {
+      next({ path: '/login' });
+    }
+  });
 
   return { app, router, store };
 };
