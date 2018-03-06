@@ -36,6 +36,9 @@ export default {
     };
   },
   methods: {
+    asyncData ({ store, route: { params: { id }}}) {
+      return store.dispatch('storeLogin', { id })
+    },
     onSubmit() {
       this.$store.dispatch('storeLogin', this.form).then(() => {
         this.$router.push({ path: '/feed' });

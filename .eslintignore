@@ -1,2 +1,6 @@
 build/*.js
 config/*.js
+src
+src/main.js
+src/entry-server.js
+src/entry-client.js

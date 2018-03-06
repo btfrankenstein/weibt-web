@@ -2,7 +2,8 @@ import apischema from 'apischema';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Message } from 'element-ui';
-import router from '../router';
+import { createRouter } from '../router';
+const router = createRouter();
 
 const baseURL = 'http://localhost:8888';
 const timeout = 30000;

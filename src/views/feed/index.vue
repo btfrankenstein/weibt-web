@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import postArea from './post-area';
-import feedList from './feed-list';
+import postArea from './post-area.vue';
+import feedList from './feed-list.vue';
 
 export default {
   components: {
