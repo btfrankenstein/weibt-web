@@ -15,7 +15,6 @@
 <script>
 import postArea from './post-area.vue';
 import feedList from './feed-list.vue';
-
 export default {
   components: {
     postArea,

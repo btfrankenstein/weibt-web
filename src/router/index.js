@@ -7,7 +7,8 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 export function createRouter() {
-  return new Router({
+  const whiteList = ['/login', '/hello']; // 不重定向白名单
+  const router = new Router({
     mode: 'history',
     fallback: false,
     routes: [
@@ -28,4 +29,5 @@ export function createRouter() {
       },
     ],
   });
+  return router
 }

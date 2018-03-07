@@ -21,6 +21,7 @@
   "dependencies": {
     "apischema": "^0.0.28",
     "axios": "^0.16.2",
+    "cookie-parser": "^1.4.3",
     "element-ui": "^2.0.0-beta.1",
     "js-cookie": "^2.1.4",
     "time-schema-formatter": "^0.0.7",

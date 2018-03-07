@@ -1,5 +1,8 @@
 import Vue from 'vue'
+import { getToken } from '@/utils/token'; // 验权
 import { createApp } from './main';
+
+const whiteList = ['/login', '/hello']; // 不重定向白名单
 
 Vue.mixin({
   beforeRouteUpdate(to, from, next) {
@@ -12,7 +15,7 @@ Vue.mixin({
     } else {
       next();
     }
-  }
+  },
 });
 
 const { app, router, store } = createApp();
@@ -20,12 +23,30 @@ if (window.__INITIAL_STATE__) {
   store.replaceState(window.__INITIAL_STATE__)
 }
 
+router.beforeEach((to, from, next) => {
+  console.log('diiiiii');
+  if (getToken()) {
+    store.dispatch('getUserInfo').then(() => {
+      next();
+    }).catch((e) => {
+      ElementUI.Message.error(e);
+      next({ path: '/login' });
+    });
+  } else if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
+    next();
+  } else {
+    next({ path: '/login' });
+  }
+});
+
 router.onReady(() => {
+  console.log('client-erady');
   // 添加路由钩子函数，用于处理 asyncData.
   // 在初始路由 resolve 后执行，
   // 以便我们不会二次预取(double-fetch)已有的数据。
   // 使用 `router.beforeResolve()`，以便确保所有异步组件都 resolve。
   router.beforeResolve((to, from, next) => {
+    console.log(to);
     const matched = router.getMatchedComponents(to);
     const prevMatched = router.getMatchedComponents(from);
     // 我们只关心之前没有渲染的组件

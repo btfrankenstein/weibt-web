@@ -17,6 +17,7 @@
         </el-form>
       </el-col>
     </el-row>
+    <router-link to="/feed">feed</router-link>
     
   </div>
 </template>
@@ -36,9 +37,6 @@ export default {
     };
   },
   methods: {
-    asyncData ({ store, route: { params: { id }}}) {
-      return store.dispatch('storeLogin', { id })
-    },
     onSubmit() {
       console.log(this.$store);
       this.$store.dispatch('storeLogin', this.form).then(() => {

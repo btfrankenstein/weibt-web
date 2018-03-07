@@ -21,7 +21,7 @@ http.interceptors.request.use((config) => {
 http.interceptors.response.use((response) => {
   if (response.data.status === 401) { // 接口401登录拦截
     router.push({ path: '/login' });
-    Message.error('登录信息过期，请重新登录！');
+    Message.error('登录信息过期，请重新登录！dsadas');
   } else if (response.data.status === 403) {
     Message.error('您没有此项操作的权限！');
   }

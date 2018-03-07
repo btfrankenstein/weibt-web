@@ -10,6 +10,7 @@
     <div class="m-t-10">
       <el-button @click="postFeed" type="primary" icon="search">发布</el-button>
     </div>
+    <router-link to="/login">login</router-link>
   </div>
 </template>
 

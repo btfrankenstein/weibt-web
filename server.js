@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const { createBundleRenderer } = require('vue-server-renderer');
 
 const resolve = file => path.resolve(__dirname, file)
@@ -59,10 +60,12 @@ function render (req, res) {
 
   const context = {
     title: 'Vue HN 2.0', // default title
-    url: req.url
+    url: req.url,
+    cookies: req.cookies,
   }
   renderer.renderToString(context, (err, html) => {
     if (err) {
+      console.log(err)
       return handleError(err)
     }
     res.send(html)
@@ -71,6 +74,7 @@ function render (req, res) {
     }
   })
 }
+app.use(cookieParser())
 
 app.get('*', isProd ? render : (req, res) => {
   readyPromise.then(() => render(req, res))
